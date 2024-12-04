@@ -1,0 +1,182 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red64\green0\blue0;\red0\green77\blue187;\red155\green0\blue211;\red0\green176\blue80;}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs32\lang9\par
+\cf1\par
+\b Three-Tier System Architecture\par
+\cf2 >Data Tier (Database): \cf0 Manages storage and updates of the application's data in a database.\par
+\cf2 >Application Server Tier (Logic): \cf0 Processes the business logic. Acts as the intermediary between the User Tier and the Data Tier.\par
+\cf2 >User Tier (Presentation): \cf0 The front-end interface for users to interact with the system.\cf1\par
+\cf2 ____________________________________________________\par
+\par
+\cf1 application server (tier) layered architecture \cf2\par
+> Overview : \cf0 design model that separates a system into distinct layers:\par
+\tab - Infrastructure Layer\par
+\tab -  Data Access Layer (DAL)\par
+\tab - Business Logic Layer (BLL)\par
+\tab - Presentation Layer\par
+\cf2 > Definition: \par
+\tab\cf0 - Infrastructure Layer:  Logs transactions, authenticates users, \tab\tab and handles API configurations.\par
+\tab - DAL:  Handles database operations such as queries, inserts, \tab\tab\tab updates, and deletes (Repositories).\par
+\tab - BLL: Processes the core application logic, validates data, \tab\tab\tab and applies business rules (Services)\par
+\tab - Presentation Tier: Handles user interface and \tab\tab\tab\tab\tab interactions(Controllers)\par
+\cf2 > Importance: \par
+\cf0\fs28\tab - Scalability: Each layer can scale independently to handle \tab increased loads.\par
+\tab - Maintainability: Changes in one layer have minimal impact on \tab others.\par
+\tab - Reusability: Components in one layer can be reused across \tab multiple applications.\par
+\tab - Security: Better isolation.\par
+\par
+\cf2\fs32 ____________________________________________________\par
+\par
+\cf1 Data transfer objects (DTO)\par
+\cf2 > Overview : \cf0  simple objects designed to transfer data between layers of an application without exposing internal entities.\par
+\cf2 > Purpose:\cf0 To encapsulate data and move it between application layers (e.g., from Business Logic Layer to Presentation Layer).\par
+\cf2 > Importance: \par
+\cf0\fs28\tab - Separation of Concerns: Keeps the database entities isolated \tab from presentation logic.\par
+\tab - Improves security by hiding internal entity details.\par
+\tab - Facilitates loose coupling between layers.\par
+\tab - Optimizes data transfer by sending only necessary information.\par
+\cf2\fs32 ____________________________________________________\par
+\par
+\cf1 Repository pattern in .net and generic repo\par
+\cf2 > Overview : \cf0  design pattern that provides a centralized interface for interacting with a data source\par
+\tab - \cf3 Repository Pattern\cf0 : A pattern that creates a layer to isolate \tab\tab\tab the application's business logic from the data access \tab\tab\tab logic by using an interface to perform CRUD \tab\tab\tab\tab operations.\par
+\tab - \cf3 Generic Repository: \cf0 A reusable repository that operates on \tab\tab\tab a specific type and can be reused across multiple \tab\tab\tab\tab entities.\par
+\cf2 > Importance: \par
+\cf0\fs28\tab - Separation of Concerns.\par
+\tab - Testability :Makes unit testing easier by mocking repository \tab interfaces.\par
+\tab - Code Reusability\par
+\tab - Flexibility: Provides a single, consistent API for accessing data \tab from multiple sources.\par
+\cf2\fs32\par
+____________________________________________________\par
+\par
+\cf1 unit of work pattern in .net\par
+\cf2 > Overview : \cf0 Combines repository operations and manages the database context's lifecycle.\par
+\cf2 > Definition: \cf0  \par
+\tab - Acts as a wrapper around the database context.\par
+\tab - Groups multiple operations (e.g., Create, Update, Delete) \tab into a single transaction.\par
+\tab - Ensures that either all operations succeed or none are \tab applied (atomicity).\par
+\cf2 > Importance: \par
+\cf0\fs28\tab - Transaction Scope: Groups multiple repository operations under \tab a single transaction.\par
+\tab - Code Organization: Simplifies business logic by delegating data \tab access and transaction management to Unit of Work.\par
+\tab - Decoupling: Abstracts the database context from the business \tab layer.\par
+\tab - Flexibility: Makes the data access layer reusable and testable.\par
+\tab\par
+\cf2\fs32 ____________________________________________________\par
+\par
+\cf1 dependency inversion and dependency injection and object lifecycle\par
+\cf2 > Dependency Inversion (DIP) : \cf0 A design principle where high-level modules and low-level modules depend on abstractions rather than each other.\par
+\tab - Abstractions > Depend on interfaces, not \tab\tab\tab\tab concrete implementations.\par
+\cf2 > Dependency Injection (DI): \cf0  A technique where dependencies are provided externally to an object rather than being created within the object.\par
+\tab - Supply objects with dependencies instead of hard-coding \tab\tab them.\par
+\cf2 > Object Lifecycle: \cf0 The stages an object goes through: creation, initialization, usage, and destruction.\par
+\tab - Ensure objects are created, initialized, and destroyed \tab systematically and in sync with the application's needs.\par
+\b0\fs28\par
+\cf2\b\fs32 ____________________________________________________\par
+\par
+\cf1 Middleware in .net and middleware pipeline\par
+\cf2 > Overview : \cf0 Middleware in .NET is a component in the request-response pipeline of an application. Each middleware processes incoming HTTP requests and decides whether to pass the request to the next middleware or handle it itself.\par
+\cf2 > Definition: \cf0  \par
+\tab - Middleware: A function or component that handles HTTP \tab requests and responses.\par
+\tab - Middleware Pipeline: A sequence of middleware \tab components that are executed in a specific order for each \tab HTTP request.\par
+\par
+\cf2 > Importance: \par
+\cf0\fs28\tab - Middleware components can validate, authenticate, or modify \tab requests\par
+\tab - Response Processing: Middleware can modify or log responses \tab before they are sent to the client.\par
+\tab - Extensibility: Developers can easily add or remove functionality \tab by modifying the pipeline.\par
+\cf2\fs32 ____________________________________________________\cf0\fs28\par
+\cf1\fs32 app setting .json\par
+\cf2 > Overview : \cf0 The appsettings.json file is a configuration file used in ASP.NET Core applications to store key-value pairs for settings. It\rquote s a common way to manage application settings such as connection strings, logging configurations, or any custom configuration data.\par
+\tab - In an ASP.NET Core application, the configuration is loaded \tab automatically during startup\par
+\cf2 > Importance: \par
+\cf0\fs28\tab flexible and powerful for managing application configurations.\par
+\b0\par
+\cf2\b\fs32 ____________________________________________________\par
+\par
+\cf1 Rest Api and HTTP protocol\par
+\cf2 > Overview :\par
+-  \cf0 REST API (Representational State Transfer):\par
+ \tab architectural style for building web services. REST uses \tab standard HTTP methods for communication and relies on \tab stateless interactions between clients and servers.\par
+- HTTP Protocol (Hypertext Transfer Protocol):\par
+\tab  The underlying protocol for sending and receiving requests \tab between clients and servers, supporting the methods and \tab status codes used in RESTful APIs.\par
+\par
+\cf3 > HTTP Methods:\cf0\par
+\tab\cf4 GET\cf0 : Retrieve information from the server (e.g., get a list of \tab users).\par
+\tab\cf4 POST\cf0 : Send new data to the server (e.g., create a new user).\par
+\tab\cf4 PUT\cf0 : Update existing data on the server (e.g., update a \tab user\rquote s details).\par
+\tab\cf4 DELETE\cf0 : Remove data from the server (e.g., delete a user)\par
+\cf2 > REST API and HTTP Protocol Relationship\cf0\par
+\tab - REST defines how to structure the interactions (i.e., \tab requests and responses) between the client and server, \tab typically using HTTP as the communication protocol.\par
+\tab - HTTP provides the foundational methods (GET, POST, PUT, \tab DELETE, etc.) for these interactions..\par
+\par
+\cf2 ____________________________________________________\cf0\fs28\par
+\cf1\fs32 swagger API documentation\par
+\cf2 > Overview : \cf0 A web-based interface that displays API documentation in an interactive and readable format.\par
+\cf2 > Importance: \par
+\cf0\fs28\tab - Developers can test API endpoints directly from the Swagger UI.\par
+\tab - Ensures APIs are documented consistently.\par
+\tab - Can be automatically integrated with many programming \tab languages and frameworks.\par
+\tab - Helps teams understand and interact with APIs efficiently.\par
+\cf2\fs32 > Steps to Use Swagger: \par
+\cf0\tab 1. Add Swagger to the Project\par
+\tab 2.  Configure Swagger in Program.cs\par
+\tab 3. Modify the SwaggerGen configuration\par
+\tab 4. Define API Controllers\par
+\cf2 > How Swagger Works: \par
+\cf0\tab 1. Swagger automatically scans controllers and their routes \tab to discover endpoints.\par
+\tab 2. Based on controller annotations, Swagger generates the \tab API documentation.\par
+\tab 3. Swagger UI allows users to test endpoints with live data.\b0\fs28\par
+\par
+\cf2\b\fs32 ____________________________________________________\cf0\fs28\par
+\cf1\fs32 Routing in .net\par
+\cf2 > Overview : \cf0 Routing in ASP.NET Core is a system that maps incoming HTTP requests to specific endpoints in the application,\par
+ such as controllers. It also provides mechanisms to generate URLs dynamically.\cf1\par
+\cf2 > How Routing Works\par
+\cf0\tab 1. Request Matching: Routing evaluates incoming HTTP \tab requests and matches them to defined routes.\par
+\tab 2. Route Execution: Once matched, the request is forwarded \tab to the corresponding controller/action or middleware\par
+\tab 3.URL Generation: Routing helps construct URLs based on \tab route definitions for navigation or API endpoints.\b0\fs28\par
+\par
+\cf2\b\fs32 ____________________________________________________\cf0\fs28\par
+\cf1\fs32 Model binding and validation\par
+\cf2 > Overview : \cf0 Model Binding and Validation are key features in ASP.NET Core that simplify the process of handling incoming data from HTTP requests and validating it before further processing.\par
+\cf1\par
+\cf3 >  Model Binding : \cf0 is the process of mapping incoming HTTP request data to action method parameters or objects.\par
+\tab\cf2 How Model Binding Works\par
+\cf0\tab 1. Request Data\par
+\tab 2. Binding\par
+\tab 3.Conversion\b0\fs28\par
+\cf3\b\fs32 >  Model Validation: \cf0 checks if the incoming data meets the defined rules and constraints\par
+\tab\cf2 Validation Process\par
+\tab\cf0 1. Automatic Validation\par
+\tab 2.Check \par
+\tab 3.Handle Validation Errors\b0\fs28\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 
